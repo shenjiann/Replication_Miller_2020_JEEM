@@ -1,0 +1,5 @@
+# .vscode
+.vscode/
+
+# OSX
+*.DS_store
