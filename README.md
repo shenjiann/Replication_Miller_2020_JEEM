@@ -22,9 +22,16 @@ $$ cov(\varepsilon_{it}, \varepsilon_{is}) = 0.3 \cdot 1 \{|s-t| = 1\} + 0.1 \cd
 
 ### Estimation Algorithm
 
-1. Data Pre-processing: 
-Replicate control observations for any values of $s$ and $d$. For example, an untreated observation in 2017 could act as a control for $d = 1$ and $s = 2017$, or as a control for $d = 2$ and $s = 2016$.
+1. Data Pre-processing
+Replicate control observations for any values of $s$ and $d$. 
 To save on computation, each untreated observation could be replicated for a random subset of the (d, s) pairs for which it could serve as a potential control.
 
-2. Tree Procedures:
-Use a panel subsampling approach in which all observations from a given panel unit are either included or excluded from the sample used to construct each tree.
+2. Splitting Procedures
+The causal forest splitting procedure can be applied to splits on $s$ or $d$ after assigning $s$ and $d$ to all observations.
+For treated observations, set $d = \sum_{\tau = 1}^t T_{it}$ and $s = t - d + 1$.
+For control observations, replicate control observations for any values of $(s, d)$. For example, an untreated observation for $t = 2017$ could act as a control for $(s = 2017, d = 1)$ or $(s = 2016, d = 2)$.
+Notes: this can be done through data preprocessing. And 
+
+1. Subsampling Procedures
+All observations from a given panel unit are either included or excluded from the sample used to construct each tree.
+

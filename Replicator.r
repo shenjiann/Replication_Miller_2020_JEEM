@@ -11,8 +11,8 @@ Replicator = R6::R6Class(
     replicated_index = NULL,
 
     initialize = function(data, seed) {
+      # check arguments
       if (!inherits(data, "Data")) stop("Argument data is not Data class!")
-
       set.seed(seed)
       self$control_index = which(rowSums(data$treatments) == 0)
       self$treated_index = which(rowSums(data$treatments) != 0)
